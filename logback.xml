@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <contextName>logback-demo</contextName>
+
+    <!-- 输出到控制台的配置 -->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!-- 直接在这里指定控制台日志的输出格式 -->
+            <!-- %relative                   相对于第一条日志的时间 -->
+            <!-- %d{yyyy-MM-dd HH:mm:ss.SSS} 按照指定格式输出日期 -->
+            <!-- %thread                     输出线程名 -->
+            <!-- %highlight(%-5level)        根据输出级别高亮 -->
+            <!-- %-5level                    输出日志级别，-5表示左对齐并且固定5个字符长度 -->
+            <!-- %logger{50}                 输出logger名字，最长50个字符 -->
+            <!-- %method                     输出方法名 -->
+            <!-- %line                       输出行号 -->
+            <!-- %msg                        输出日志消息 -->
+            <!-- %n                          换行 -->
+            <pattern>%green(%relative) %cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) %boldYellow([%thread]) %highlight(%-5level %logger.%method:%line) %magenta(-) %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 文件输出配置 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/ImageGame .log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名包含日期 -->
+            <fileNamePattern>logs/myapp.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保留滚动日志文件的最大历史记录为30天 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 直接指定文件输出的日志格式 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}.%method: %line - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 定义日志级别 -->
+    <root level="DEBUG">
+        <!-- 指定使用的appender -->
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
