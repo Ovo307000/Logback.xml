@@ -23,13 +23,19 @@
 
     <!-- 文件输出配置 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/ImageGame .log</file>
+        <file>logs/ImageGame2.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 日志文件名包含日期 -->
-            <fileNamePattern>logs/myapp.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/ImageGame2.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保留滚动日志文件的最大数量为30个 -->
+            <maxHistory>30</maxHistory>
             <!-- 保留滚动日志文件的最大历史记录为30天 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
+        <!-- 日志文件最大大小为10MB -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!-- 直接指定文件输出的日志格式 -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}.%method: %line - %msg%n</pattern>
