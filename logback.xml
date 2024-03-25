@@ -17,7 +17,7 @@
             <!-- %line                       输出行号 -->
             <!-- %msg                        输出日志消息 -->
             <!-- %n                          换行 -->
-            <pattern>%green(%relative) %cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) %boldYellow([%thread]) %highlight(%-5level %logger.%method:%line) %magenta(-) %msg%n</pattern>
+            <pattern>%green(%relative) %cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %boldYellow([%20.20thread{20}]) %highlight(%25.20logger{20}.%method{10}:%5.5line) %magenta(-) %msg%n</pattern>
         </layout>
     </appender>
 
